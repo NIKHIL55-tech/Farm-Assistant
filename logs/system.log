@@ -6,3 +6,116 @@ INFO:root:FarmerAdvisor \u27a1\ufe0f MarketResearcher: Suggest profitable crop b
 INFO:root:MarketResearcher \u2b05\ufe0f FarmerAdvisor: Suggest profitable crop based on current market trends
 INFO:root:MarketResearcher \u27a1\ufe0f FarmerAdvisor: Crop recommendation: Maize based on demand and pricing
 INFO:root:FarmerAdvisor \u2b05\ufe0f MarketResearcher: Crop recommendation: Maize based on demand and pricing
+INFO:root:MarketResearcher \u27a1\ufe0f FarmerAdvisor: Suggest crops for 2.5 hectares loamy soil.
+INFO:root:FarmerAdvisor \u2b05\ufe0f MarketResearcher: Suggest crops for 2.5 hectares loamy soil.
+INFO:root:FarmerAdvisor \u27a1\ufe0f MarketResearcher: What are current price trends?
+INFO:root:MarketResearcher \u2b05\ufe0f FarmerAdvisor: What are current price trends?
+INFO:root:MarketResearcher \u27a1\ufe0f FarmerAdvisor: Suggest crops for 2.5 hectares black soil.
+INFO:root:FarmerAdvisor \u2b05\ufe0f MarketResearcher: Suggest crops for 2.5 hectares black soil.
+INFO:root:FarmerAdvisor \u27a1\ufe0f MarketResearcher: What are current price trends?
+INFO:root:MarketResearcher \u2b05\ufe0f FarmerAdvisor: What are current price trends?
+INFO:numexpr.utils:NumExpr defaulting to 8 threads.
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: Recommend crops for soil pH 6.5
+INFO:root:FarmerAdvisor processing message: Recommend crops for soil pH 7.2
+INFO:root:MarketResearcher processing message: What are the most profitable crops now?
+INFO:root:FarmerAdvisor \u27a1\ufe0f MarketResearcher: Suggest profitable crop based on current market trends
+INFO:root:MarketResearcher \u2b05\ufe0f FarmerAdvisor: Suggest profitable crop based on current market trends
+INFO:root:MarketResearcher processing message: Suggest profitable crop based on current market trends
+INFO:root:MarketResearcher \u27a1\ufe0f FarmerAdvisor: Crop recommendation: Maize based on demand and pricing
+INFO:root:FarmerAdvisor \u2b05\ufe0f MarketResearcher: Crop recommendation: Maize based on demand and pricing
+INFO:root:FarmerAdvisor processing message: Crop recommendation: Maize based on demand and pricing
+INFO:root:FarmerAdvisor \u27a1\ufe0f MarketResearcher: What's the price forecast for Maize?
+INFO:root:MarketResearcher \u2b05\ufe0f FarmerAdvisor: What's the price forecast for Maize?
+INFO:root:MarketResearcher processing message: What's the price forecast for Maize?
+INFO:root:MarketResearcher processing message: What's the price forecast for Maize?
+INFO:numexpr.utils:NumExpr defaulting to 8 threads.
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: Recommend crops for soil pH 6.5
+INFO:root:FarmerAdvisor processing message: Recommend crops for soil pH 7.2
+INFO:root:MarketResearcher processing message: What are the most profitable crops now?
+INFO:root:FarmerAdvisor \u27a1\ufe0f MarketResearcher: Suggest profitable crop based on current market trends
+INFO:root:MarketResearcher \u2b05\ufe0f FarmerAdvisor: Suggest profitable crop based on current market trends
+INFO:root:MarketResearcher processing message: Suggest profitable crop based on current market trends
+INFO:root:MarketResearcher \u27a1\ufe0f FarmerAdvisor: Crop recommendation: Maize based on demand and pricing
+INFO:root:FarmerAdvisor \u2b05\ufe0f MarketResearcher: Crop recommendation: Maize based on demand and pricing
+INFO:root:FarmerAdvisor processing message: Crop recommendation: Maize based on demand and pricing
+INFO:root:FarmerAdvisor \u27a1\ufe0f MarketResearcher: What's the price forecast for Maize?
+INFO:root:MarketResearcher \u2b05\ufe0f FarmerAdvisor: What's the price forecast for Maize?
+INFO:root:MarketResearcher processing message: What's the price forecast for Maize?
+INFO:root:MarketResearcher processing message: What's the price forecast for Maize?
+INFO:numexpr.utils:NumExpr defaulting to 8 threads.
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: Recommend crops for soil pH 6.5
+INFO:root:FarmerAdvisor processing message: Recommend crops for soil pH 7.2
+INFO:root:FarmerAdvisor processing message: I have sandy loam soil with pH 6.8. What crops should I consider?
+INFO:root:FarmerAdvisor \u27a1\ufe0f MarketResearcher: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:MarketResearcher \u2b05\ufe0f FarmerAdvisor: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:MarketResearcher processing message: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: Recommend crops for soil pH 6.5
+INFO:root:FarmerAdvisor processing message: Recommend crops for soil pH 7.2
+INFO:root:FarmerAdvisor processing message: I have sandy loam soil with pH 6.8. What crops should I consider?
+INFO:root:FarmerAdvisor \u27a1\ufe0f MarketResearcher: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:MarketResearcher \u2b05\ufe0f FarmerAdvisor: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:MarketResearcher processing message: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: Recommend crops for soil pH 6.5
+INFO:root:Extracted soil pH: 6.5 from message: Recommend crops for soil pH 6.5
+INFO:root:FarmerAdvisor processing message: Recommend crops for soil pH 7.2
+INFO:root:Extracted soil pH: 7.2 from message: Recommend crops for soil pH 7.2
+INFO:root:FarmerAdvisor processing message: I have sandy loam soil with pH 6.8. What crops should I consider?
+INFO:root:FarmerAdvisor \u27a1\ufe0f MarketResearcher: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:MarketResearcher \u2b05\ufe0f FarmerAdvisor: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:MarketResearcher processing message: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: Recommend crops for soil pH 6.5
+INFO:root:Extracted soil pH: 6.5 from message: Recommend crops for soil pH 6.5
+INFO:root:FarmerAdvisor processing message: Recommend crops for soil pH 7.2
+INFO:root:Extracted soil pH: 7.2 from message: Recommend crops for soil pH 7.2
+INFO:root:FarmerAdvisor processing message: I have sandy loam soil with pH 6.8. What crops should I consider?
+INFO:root:FarmerAdvisor \u27a1\ufe0f MarketResearcher: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:MarketResearcher \u2b05\ufe0f FarmerAdvisor: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:MarketResearcher processing message: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: Recommend crops for soil pH 6.5
+INFO:root:Extracted soil pH: 6.5 from message: Recommend crops for soil pH 6.5
+INFO:root:FarmerAdvisor processing message: Recommend crops for soil pH 7.2
+INFO:root:Extracted soil pH: 7.2 from message: Recommend crops for soil pH 7.2
+INFO:root:FarmerAdvisor processing message: I have sandy loam soil with pH 6.8. What crops should I consider?
+INFO:root:FarmerAdvisor \u27a1\ufe0f MarketResearcher: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:MarketResearcher \u2b05\ufe0f FarmerAdvisor: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:MarketResearcher processing message: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: Recommend crops for soil pH 6.5
+INFO:root:Extracted soil pH: 6.5 from message: Recommend crops for soil pH 6.5
+INFO:root:FarmerAdvisor processing message: Recommend crops for soil pH 7.2
+INFO:root:Extracted soil pH: 7.2 from message: Recommend crops for soil pH 7.2
+INFO:root:FarmerAdvisor processing message: I have sandy loam soil with pH 6.8. What crops should I consider?
+INFO:root:FarmerAdvisor \u27a1\ufe0f MarketResearcher: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:MarketResearcher \u2b05\ufe0f FarmerAdvisor: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:MarketResearcher processing message: Which of these crops have the best market outlook: Corn, Rice, Soybean?
