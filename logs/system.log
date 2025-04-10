@@ -119,3 +119,145 @@ INFO:root:FarmerAdvisor processing message: I have sandy loam soil with pH 6.8. 
 INFO:root:FarmerAdvisor \u27a1\ufe0f MarketResearcher: Which of these crops have the best market outlook: Corn, Rice, Soybean?
 INFO:root:MarketResearcher \u2b05\ufe0f FarmerAdvisor: Which of these crops have the best market outlook: Corn, Rice, Soybean?
 INFO:root:MarketResearcher processing message: Which of these crops have the best market outlook: Corn, Rice, Soybean?
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: {'type': 'crop_advice', 'area': 'Warangal', 'season': 'Kharif', 'crop': 'Maize'}
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: 
+INFO:root:MarketResearcher processing message: 
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: Can you recommend a suitable crop for soil pH 6.2 and average rainfall?
+INFO:root:MarketResearcher processing message: Can you recommend a suitable crop for soil pH 6.2 and average rainfall?
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: Can you recommend a suitable crop for soil pH 6.2 and average rainfall?
+INFO:root:MarketResearcher processing message: Can you recommend a suitable crop for soil pH 6.2 and average rainfall?
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: Can you recommend a suitable crop for soil pH 6.2 and average rainfall?
+INFO:root:MarketResearcher processing message: Can you recommend a suitable crop for soil pH 6.2 and average rainfall?
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: Can you recommend a suitable crop for soil pH 6.2 and average rainfall?
+INFO:root:MarketResearcher processing message: Can you recommend a suitable crop for soil pH 6.2 and average rainfall?
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: Can you recommend a suitable crop for soil pH 6.2 and average rainfall?
+INFO:root:MarketResearcher processing message: Can you recommend a suitable crop for soil pH 6.2 and average rainfall?
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: 
+INFO:root:MarketResearcher processing message: 
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: 
+INFO:root:MarketResearcher processing message: 
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: 
+INFO:root:MarketResearcher processing message: 
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: 
+INFO:root:MarketResearcher processing message: 
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:FarmerAdvisor processing message: Recommend crops for pH 6.2
+INFO:root:MarketResearcher processing message: Recommend crops for pH 6.2
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:FarmerAdvisor processing message: Recommend crops for Farm_ID 1
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:FarmerAdvisor processing message: Recommend crops for Farm_ID 1
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:FarmerAdvisor processing message: Recommend crops for Farm_ID 1
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:FarmerAdvisor processing message: Recommend crops for Farm_ID 1
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:FarmerAdvisor processing message: Recommend crops for Farm_ID 1
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:FarmerAdvisor processing message: Recommend crops for Farm_ID 1
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:FarmerAdvisor processing message: Recommend crops for Farm_ID 1
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:FarmerAdvisor processing message: Recommend crops for Farm_ID 1
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:FarmerAdvisor processing message: Recommend crops for Farm_ID 1
