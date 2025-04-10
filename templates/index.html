@@ -1,0 +1,289 @@
+{% extends 'base.html' %}
+
+{% block title %}Farm Assistant - Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h1 class="dashboard-title"><i class="fas fa-seedling me-2"></i>Agricultural Intelligence Network</h1>
+            <p class="mb-0">AI-powered farming insights for sustainable agriculture</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <a href="/farm-input" class="btn btn-primary">
+                <i class="fas fa-plus-circle me-1"></i>New Recommendation
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body stat-card">
+                <i class="fas fa-farm"></i>
+                <div class="stat-value">{{ total_farms }}</div>
+                <div class="stat-label">Farms Analyzed</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body stat-card">
+                <i class="fas fa-wheat-awn"></i>
+                <div class="stat-value">{{ avg_yield }} tons</div>
+                <div class="stat-label">Average Yield</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body stat-card">
+                <i class="fas fa-leaf"></i>
+                <div class="stat-value">{{ avg_sustainability }}/100</div>
+                <div class="stat-label">Sustainability Score</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-chart-line me-2"></i>Top Performing Crops (Yield)
+            </div>
+            <div class="card-body">
+                <div id="yield-chart"></div>
+                <div class="mt-3">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Crop</th>
+                                <th class="text-end">Avg. Yield (tons/hectare)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for crop, yield in top_crops.items() %}
+                            <tr>
+                                <td>{{ crop }}</td>
+                                <td class="text-end">{{ yield|round(2) }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-coins me-2"></i>Latest Market Prices
+            </div>
+            <div class="card-body">
+                <div id="price-chart"></div>
+                <div class="mt-3">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Crop</th>
+                                <th class="text-end">Price (per ton)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product, price in recent_prices.items() %}
+                            <tr>
+                                <td>{{ product }}</td>
+                                <td class="text-end">₹{{ price|round(2) }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-seedling me-2"></i>Sustainability Metrics
+            </div>
+            <div class="card-body">
+                <div id="sustainability-chart"></div>
+                <div class="text-center mt-3">
+                    <div class="btn-group" role="group">
+                        {% for crop in crops[:5] %}
+                        <input type="checkbox" class="btn-check crop-toggle" id="btn-{{ crop }}" autocomplete="off" checked data-crop="{{ crop }}">
+                        <label class="btn btn-outline-success" for="btn-{{ crop }}">{{ crop }}</label>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-rotate me-2"></i>Crop Rotation Planner
+            </div>
+            <div class="card-body">
+                <p>Plan sustainable crop rotations to maximize soil health and minimize pest problems.</p>
+                <form id="rotation-form" class="row g-3">
+                    <div class="col-md-6">
+                        <label for="current-crop" class="form-label">Current Crop</label>
+                        <select class="form-select" id="current-crop" required>
+                            <option value="" selected disabled>Select a crop</option>
+                            {% for crop in crops %}
+                            <option value="{{ crop }}">{{ crop }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="soil-nitrogen" class="form-label">Soil Nitrogen Level</label>
+                        <select class="form-select" id="soil-nitrogen">
+                            <option value="-1">Low</option>
+                            <option value="0" selected>Normal</option>
+                            <option value="1">High</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary">Get Rotation Plan</button>
+                    </div>
+                </form>
+                <div class="mt-3" id="rotation-result" style="display: none;">
+                    <div class="alert alert-success">
+                        <div id="rotation-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-cloud-sun me-2"></i>Weather Forecast
+            </div>
+            <div class="card-body">
+                <form id="weather-form" class="row g-3">
+                    <div class="col-md-8">
+                        <label for="weather-location" class="form-label">Location</label>
+                        <select class="form-select" id="weather-location">
+                            {% for location in locations %}
+                            <option value="{{ location }}">{{ location }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">&nbsp;</label>
+                        <button type="submit" class="btn btn-primary w-100">View Weather</button>
+                    </div>
+                </form>
+                <div class="mt-3 text-center">
+                    <a href="/weather" class="btn btn-outline-primary">
+                        <i class="fas fa-cloud-sun me-1"></i>Detailed Weather Analysis
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Yield chart
+    const yieldData = [
+        {% for crop, yield in top_crops.items() %}
+        {
+            crop: "{{ crop }}",
+            yield: {{ yield }}
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ];
+    
+    const yieldChart = {
+        x: yieldData.map(d => d.crop),
+        y: yieldData.map(d => d.yield),
+        type: 'bar',
+        marker: {
+            color: '#3a7e4f'
+        }
+    };
+    
+    Plotly.newPlot('yield-chart', [yieldChart], {
+        margin: { t: 10, b: 30, l: 40, r: 10 },
+        height: 200
+    });
+    
+    // Price chart
+    const priceData = [
+        {% for product, price in recent_prices.items() %}
+        {
+            crop: "{{ product }}",
+            price: {{ price }}
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ];
+    
+    const priceChart = {
+        x: priceData.map(d => d.crop),
+        y: priceData.map(d => d.price),
+        type: 'bar',
+        marker: {
+            color: '#2196f3'
+        }
+    };
+    
+    Plotly.newPlot('price-chart', [priceChart], {
+        margin: { t: 10, b: 30, l: 40, r: 10 },
+        height: 200
+    });
+    
+    // Load sustainability chart
+    function loadSustainabilityChart() {
+        const selectedCrops = Array.from(document.querySelectorAll('.crop-toggle:checked')).map(el => el.dataset.crop);
+        
+        fetch('/charts/sustainability?crops=' + selectedCrops.join(','))
+            .then(response => response.json())
+            .then(data => {
+                Plotly.newPlot('sustainability-chart', data.data, data.layout);
+            });
+    }
+    
+    // Initialize sustainability chart
+    loadSustainabilityChart();
+    
+    // Handle crop toggles
+    document.querySelectorAll('.crop-toggle').forEach(toggle => {
+        toggle.addEventListener('change', loadSustainabilityChart);
+    });
+    
+    // Crop rotation form
+    document.getElementById('rotation-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const crop = document.getElementById('current-crop').value;
+        const nitrogen = document.getElementById('soil-nitrogen').value;
+        
+        fetch(`/api/crop-rotation?crop=${crop}&nitrogen=${nitrogen}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('rotation-content').innerText = data.rotation_plan;
+                document.getElementById('rotation-result').style.display = 'block';
+            });
+    });
+    
+    // Weather form
+    document.getElementById('weather-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const location = document.getElementById('weather-location').value;
+        window.location.href = `/weather?location=${location}`;
+    });
+</script>
+{% endblock %} 

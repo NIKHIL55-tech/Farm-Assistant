@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+
+{% block title %}Farm Assistant - Crop Recommendations{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h1 class="dashboard-title"><i class="fas fa-seedling me-2"></i>Crop Recommendations</h1>
+            <p class="mb-0">AI-powered recommendations based on your farm's conditions</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+            <a href="/farm-input" class="btn btn-outline-primary me-2">
+                <i class="fas fa-edit me-1"></i>New Analysis
+            </a>
+            <a href="/" class="btn btn-outline-secondary">
+                <i class="fas fa-home me-1"></i>Dashboard
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Farm summary -->
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-info-circle me-2"></i>Farm Overview
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <th>Location:</th>
+                                    <td>{{ farm_data.Location }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Soil pH:</th>
+                                    <td>{{ farm_data.Soil_pH }} ({{ 'Acidic' if farm_data.Soil_pH < 6.0 else 'Neutral' if farm_data.Soil_pH < 7.5 else 'Alkaline' }})</td>
+                                </tr>
+                                <tr>
+                                    <th>Soil Type:</th>
+                                    <td>{{ farm_data.Soil_Type }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <th>Field Size:</th>
+                                    <td>{{ farm_data.Field_Size_hectare }} hectares</td>
+                                </tr>
+                                <tr>
+                                    <th>Rainfall:</th>
+                                    <td>{{ farm_data.Rainfall_mm }} mm/year</td>
+                                </tr>
+                                <tr>
+                                    <th>Temperature:</th>
+                                    <td>{{ farm_data.Temperature_C }}°C (average)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Weather forecast -->
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-cloud-sun me-2"></i>Weather Forecast for {{ farm_data.Location }}
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% for forecast in weather_forecast[:3] %}
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <div class="card-body text-center">
+                                <h5>{{ forecast.date.strftime('%b %Y') }}</h5>
+                                <div class="fs-1">
+                                    <i class="fas {% if forecast.temperature_C > 28 %}fa-sun text-warning{% elif forecast.rainfall_mm > 100 %}fa-cloud-rain text-primary{% else %}fa-cloud-sun text-info{% endif %}"></i>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-4">
+                                        <div class="small text-muted">Temp</div>
+                                        <div>{{ forecast.temperature_C }}°C</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="small text-muted">Rain</div>
+                                        <div>{{ forecast.rainfall_mm }}mm</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="small text-muted">Humidity</div>
+                                        <div>{{ forecast.humidity_pct }}%</div>
+                                    </div>
+                                </div>
+                                <div class="mt-2 small">
+                                    <span class="badge {% if forecast.confidence > 70 %}bg-success{% elif forecast.confidence > 40 %}bg-warning{% else %}bg-danger{% endif %}">
+                                        {{ forecast.confidence }}% Confidence
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="text-center mt-2">
+                    <a href="/weather?location={{ farm_data.Location }}" class="btn btn-sm btn-outline-primary">View Detailed Weather</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recommended crops -->
+<div class="row">
+    {% for crop in crop_details %}
+    <div class="col-md-12 mb-4">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="recommendation-score">{{ loop.index }}</div>
+                <h4 class="mb-0">{{ crop.crop_type }}</h4>
+                <div class="ms-auto">
+                    <span class="score-pill {% if crop.sustainability_score > 70 %}score-high{% elif crop.sustainability_score > 50 %}score-medium{% else %}score-low{% endif %}">
+                        Sustainability: {{ crop.sustainability_score|round(1) }}/100
+                    </span>
+                </div>
+            </div>
+            
+            <div class="card-body">
+                <div class="row mb-4">
+                    <!-- Yield Prediction -->
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <i class="fas fa-chart-line me-2"></i>Yield Prediction
+                            </div>
+                            <div class="card-body">
+                                {% if crop.yield_prediction and crop.yield_prediction.yield_prediction %}
+                                <div class="text-center mb-3">
+                                    <div class="display-4">{{ crop.yield_prediction.yield_prediction }} <small class="text-muted fs-6">tons/ha</small></div>
+                                    <div class="small text-muted">
+                                        Base yield: {{ crop.yield_prediction.base_yield }} × Weather impact: {{ crop.yield_prediction.weather_impact }}
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="badge {% if crop.yield_prediction.confidence > 70 %}bg-success{% elif crop.yield_prediction.confidence > 40 %}bg-warning{% else %}bg-danger{% endif %}">
+                                            {{ crop.yield_prediction.confidence }}% Confidence
+                                        </span>
+                                    </div>
+                                </div>
+                                <p class="small">{{ crop.yield_prediction.explanation }}</p>
+                                {% else %}
+                                <div class="text-center text-muted">
+                                    <i class="fas fa-exclamation-circle fa-2x mb-2"></i>
+                                    <p>Insufficient data to predict yield.</p>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Weather Impact -->
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <i class="fas fa-cloud-sun me-2"></i>Weather Impact
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center mb-3">
+                                    <div class="display-5">
+                                        <span class="{% if crop.weather_impact.impact_factor > 1.05 %}text-success{% elif crop.weather_impact.impact_factor < 0.95 %}text-danger{% else %}text-dark{% endif %}">
+                                            {{ (crop.weather_impact.impact_factor * 100)|round|int }}%
+                                        </span>
+                                    </div>
+                                    <div class="mt-1">
+                                        <span class="badge {% if crop.weather_impact.impact_factor > 1.05 %}bg-success{% elif crop.weather_impact.impact_factor < 0.95 %}bg-danger{% else %}bg-info{% endif %}">
+                                            {{ crop.weather_impact.forecast_summary }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <p class="small">{{ crop.weather_impact.explanation }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Market Forecast -->
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <i class="fas fa-coins me-2"></i>Market Forecast
+                            </div>
+                            <div class="card-body">
+                                {% if crop.price_forecast and crop.price_forecast.response %}
+                                <p>{{ crop.price_forecast.response }}</p>
+                                {% else %}
+                                <div class="text-center text-muted">
+                                    <i class="fas fa-exclamation-circle fa-2x mb-2"></i>
+                                    <p>Price forecast data not available.</p>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <!-- Crop Rotation Plan -->
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header bg-light">
+                                <i class="fas fa-sync-alt me-2"></i>Crop Rotation Plan
+                            </div>
+                            <div class="card-body">
+                                <pre class="small">{{ crop.rotation_plan }}</pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Management Practices -->
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header bg-light">
+                                <i class="fas fa-tasks me-2"></i>Management Recommendations
+                            </div>
+                            <div class="card-body">
+                                {% if crop.management and crop.management.recommendations %}
+                                <ul class="list-group list-group-flush">
+                                    {% for rec in crop.management.recommendations %}
+                                    <li class="list-group-item">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <strong>{{ rec.practice }}</strong>
+                                                <div class="small">{{ rec.recommendation }}</div>
+                                            </div>
+                                            <span class="badge {% if rec.impact > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                                {{ "+" if rec.impact > 0 else "" }}{{ rec.impact }} tons
+                                            </span>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                {% else %}
+                                <div class="text-center text-muted">
+                                    <p>No specific management recommendations available.</p>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %} 

@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+
+{% block title %}Farm Assistant - Input Farm Data{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h1 class="dashboard-title"><i class="fas fa-edit me-2"></i>Farm Data Input</h1>
+            <p class="mb-0">Enter your farm details to get AI-powered crop recommendations</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+            <a href="/" class="btn btn-outline-primary">
+                <i class="fas fa-arrow-left me-1"></i>Back to Dashboard
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-seedling me-2"></i>Enter Farm Details
+            </div>
+            <div class="card-body">
+                <form action="/farm-input" method="POST" class="row g-3 needs-validation" novalidate>
+                    <!-- Farm Identification -->
+                    <div class="col-md-6">
+                        <label for="farm_id" class="form-label">Farm ID</label>
+                        <input type="text" class="form-control" id="farm_id" name="farm_id" placeholder="Optional reference ID">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="location" class="form-label">Location</label>
+                        <select class="form-select" id="location" name="location" required>
+                            <option value="" selected disabled>Select location</option>
+                            {% for location in locations %}
+                            <option value="{{ location }}">{{ location }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select a location.
+                        </div>
+                    </div>
+                    
+                    <!-- Field Characteristics -->
+                    <div class="col-md-4">
+                        <label for="field_size" class="form-label">Field Size (hectares)</label>
+                        <input type="number" class="form-control" id="field_size" name="field_size" min="0.1" step="0.1" value="1.0" required>
+                        <div class="invalid-feedback">
+                            Please enter a valid field size (minimum 0.1 hectares).
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="soil_ph" class="form-label">Soil pH</label>
+                        <input type="number" class="form-control" id="soil_ph" name="soil_ph" min="4" max="10" step="0.1" value="6.5" required>
+                        <div class="form-text small">Typical range: 4.0 (acidic) to 9.0 (alkaline)</div>
+                        <div class="invalid-feedback">
+                            Please enter a valid pH value between 4 and 10.
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="soil_type" class="form-label">Soil Type</label>
+                        <select class="form-select" id="soil_type" name="soil_type" required>
+                            <option value="" selected disabled>Select soil type</option>
+                            {% for soil_type in soil_types %}
+                            <option value="{{ soil_type }}">{{ soil_type }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select a soil type.
+                        </div>
+                    </div>
+                    
+                    <!-- Environmental Conditions -->
+                    <div class="col-md-4">
+                        <label for="rainfall" class="form-label">Annual Rainfall (mm)</label>
+                        <input type="number" class="form-control" id="rainfall" name="rainfall" min="0" step="10" value="800" required>
+                        <div class="invalid-feedback">
+                            Please enter a valid rainfall value.
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="temperature" class="form-label">Average Temperature (°C)</label>
+                        <input type="number" class="form-control" id="temperature" name="temperature" min="0" max="50" step="0.1" value="25" required>
+                        <div class="invalid-feedback">
+                            Please enter a valid temperature between 0 and 50°C.
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="irrigation_type" class="form-label">Irrigation Type</label>
+                        <select class="form-select" id="irrigation_type" name="irrigation_type" required>
+                            <option value="" selected disabled>Select irrigation type</option>
+                            {% for irrigation_type in irrigation_types %}
+                            <option value="{{ irrigation_type }}">{{ irrigation_type }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select an irrigation type.
+                        </div>
+                    </div>
+                    
+                    <!-- Management Practices -->
+                    <div class="col-md-6">
+                        <label for="pesticide_use" class="form-label">Pesticide Use (kg/hectare)</label>
+                        <input type="number" class="form-control" id="pesticide_use" name="pesticide_use" min="0" step="0.1" value="2.0" required>
+                        <div class="invalid-feedback">
+                            Please enter a valid pesticide amount.
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="fertilizer_use" class="form-label">Fertilizer Use (kg/hectare)</label>
+                        <input type="number" class="form-control" id="fertilizer_use" name="fertilizer_use" min="0" step="10" value="100" required>
+                        <div class="invalid-feedback">
+                            Please enter a valid fertilizer amount.
+                        </div>
+                    </div>
+                    
+                    <div class="col-12 mt-4">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="reset" class="btn btn-outline-secondary me-md-2">
+                                <i class="fas fa-undo me-1"></i>Reset
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-check-circle me-1"></i>Get Recommendations
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Soil pH Guide Card -->
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-info-circle me-2"></i>Soil pH Guide
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>pH Scale and Soil Types</h5>
+                        <ul>
+                            <li><strong>pH below 5.5:</strong> Strongly acidic soil</li>
+                            <li><strong>pH 5.5-6.5:</strong> Slightly acidic soil (good for most crops)</li>
+                            <li><strong>pH 6.5-7.5:</strong> Neutral soil (ideal for many crops)</li>
+                            <li><strong>pH 7.5-8.5:</strong> Slightly alkaline soil</li>
+                            <li><strong>pH above 8.5:</strong> Strongly alkaline soil</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Crop pH Preferences</h5>
+                        <ul>
+                            <li><strong>Acidic soil lovers (pH 5.0-6.5):</strong> Potato, Rice, Corn</li>
+                            <li><strong>Neutral soil lovers (pH 6.0-7.0):</strong> Soybean, Wheat, Cotton</li>
+                            <li><strong>Alkaline soil tolerant (pH 7.0-8.0):</strong> Barley, Sorghum</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Update soil pH visual feedback based on value
+        const soilPhInput = document.getElementById('soil_ph');
+        const updatePhFeedback = () => {
+            const phValue = parseFloat(soilPhInput.value);
+            let phCategory = '';
+            let phClass = '';
+            
+            if (phValue < 5.5) {
+                phCategory = 'Strongly acidic';
+                phClass = 'text-danger';
+            } else if (phValue < 6.5) {
+                phCategory = 'Slightly acidic (good for most crops)';
+                phClass = 'text-success';
+            } else if (phValue < 7.5) {
+                phCategory = 'Neutral (ideal for many crops)';
+                phClass = 'text-success';
+            } else if (phValue < 8.5) {
+                phCategory = 'Slightly alkaline';
+                phClass = 'text-warning';
+            } else {
+                phCategory = 'Strongly alkaline';
+                phClass = 'text-danger';
+            }
+            
+            // Update form text with classification
+            const formText = soilPhInput.parentNode.querySelector('.form-text');
+            formText.innerHTML = `Typical range: 4.0 (acidic) to 9.0 (alkaline) - <span class="${phClass}"><strong>${phCategory}</strong></span>`;
+        };
+        
+        soilPhInput.addEventListener('input', updatePhFeedback);
+        soilPhInput.addEventListener('change', updatePhFeedback);
+        
+        // Initial update
+        updatePhFeedback();
+    });
+</script>
+{% endblock %} 

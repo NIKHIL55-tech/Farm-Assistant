@@ -27,13 +27,13 @@ class DecisionEngine:
         subset = self.data[
             (self.data["Soil_pH"] >= target_ph - 0.5) &
             (self.data["Soil_pH"] <= target_ph + 0.5)
-        ]
+        ].copy()  # Create a copy to avoid the SettingWithCopyWarning
 
         if subset.empty:
             return {"response": "No valid recommendations found."}
 
-        # Calculate sustainability scores
-        subset["Sustainability_Score"] = subset.apply(calculate_sustainability_score, axis=1)
+        # Calculate sustainability scores using loc to avoid the warning
+        subset.loc[:, "Sustainability_Score"] = subset.apply(calculate_sustainability_score, axis=1)
         top_crops = subset.sort_values(by="Sustainability_Score", ascending=False).head(3)
 
         return {

@@ -4,32 +4,91 @@ A hackathon project aiming to improve farming efficiency and reduce environmenta
 
 ## ✅ Completed Phases
 
-### Phase 1: Core Infrastructure
+### Phase 1: Core Infrastructure ✓
 - SQLite database created and loaded with real datasets
 - Agent framework for communication
 - Logging setup for traceability
 
-### Phase 2: MVP Agents
+### Phase 2: MVP Agents ✓
 - Implemented FarmerAdvisor with farm data analysis and recommendation capabilities
 - Built MarketResearcher with price trend analysis and profitability calculations
 - Connected agents to database for information retrieval
 - Created basic inter-agent communication workflow
+
+### Phase 3: Agent Coordination & Decision Engine ✓
+- Implemented Coordinator module with weighted recommendation system
+- Created algorithm to balance economic and environmental factors
+- Built Decision Engine with sustainability scoring
+- Developed recommendation aggregation functionality
+
+### Phase 4: Enhanced Features & UI ✓
+- Added crop rotation suggestions with multi-year planning
+- Implemented weather data integration with forecasting
+- Created yield prediction models using machine learning
+- Built web interface with interactive dashboards and data visualizations
+- Added environmental impact analysis and sustainability metrics (scale 0-100)
+- Integrated Plotly for interactive data visualizations
 
 ## 🚀 Agents
 
 - **FarmerAdvisor**: Analyzes farm data and provides crop recommendations based on soil conditions
 - **MarketResearcher**: Examines market trends, calculates crop profitability, and forecasts prices
 
+## 📊 Advanced Features
+
+- **Crop Rotation Planner**: Suggests optimal crop rotation sequences based on soil health and crop compatibility
+- **Weather Integration**: Provides historical weather data and forecasts with increasing uncertainty over time
+- **Yield Prediction**: Machine learning models for predicting crop yields based on farm conditions
+- **Sustainability Metrics**: Visual dashboards showing environmental impact of different crop choices (0-100 scale)
+- **Data Visualization**: Interactive charts using Plotly for price trends, sustainability comparisons, and weather data
+
 ## 📂 Usage
 
 ```bash
 # Setup
+python -m pip install --upgrade pip setuptools wheel
 pip install -r requirements.txt
 python database/init_db.py
 
+# Run the web application
+python run_app.py
+
 # Run the phase 2 demo
 python test_phase2.py
+
+# Run the decision engine test
+python run_decision_test.py
 ```
+
+## Dependencies
+
+This project requires the following main dependencies:
+- Flask: Web framework
+- Pandas: Data manipulation
+- Scikit-learn: Machine learning models
+- Plotly: Interactive data visualization
+- SQLite: Database storage
+
+Install all dependencies using the requirements.txt file.
+
+## 🌐 Web Interface
+
+The web interface is available at http://localhost:5000 and includes:
+
+1. **Dashboard**: Overview of farm statistics, crop performance, and market prices
+2. **Farm Input Form**: Enter farm details to get personalized recommendations
+3. **Recommendation Page**: Detailed crop recommendations with sustainability metrics
+4. **Weather Analysis**: Historical and forecasted weather data with agricultural impact analysis
+5. **Crop Rotation Planner**: Interactive tool for planning sustainable crop rotations
+
+## Next Steps
+
+The project is now ready for Phase 5: Polish & Presentation. Key activities include:
+- Comprehensive testing with various farm conditions
+- Fixing minor UI issues
+- Optimizing performance
+- Preparing demonstration data
+- Creating presentation materials
 
 # Agricultural Intelligence Network (AIN): Phased Development Plan
 
@@ -110,6 +169,36 @@ Given your 2-day hackathon timeframe, here's a pragmatic phased development appr
 
 **Deliverable:** Polished application ready for demonstration
 
+## Phase 6: Future Enhancements (Post-Hackathon)
+**Goal:** Address remaining challenges from the problem statement and expand system capabilities
+
+1. **Additional Stakeholder Agents**
+   - Implement Agricultural Expert agent for specialized knowledge
+   - Add Government Policy agent to incorporate regulations and subsidies
+   - Create Consumer Trend agent to track changing market preferences
+
+2. **Advanced Environmental Impact Analysis**
+   - Develop carbon footprint calculation for farming practices
+   - Implement water consumption optimization models
+   - Create soil erosion prevention strategies with actionable recommendations
+
+3. **Community and Knowledge Sharing Platform**
+   - Build collaborative features between farmers
+   - Implement success story sharing mechanism
+   - Create regional best practices repository
+
+4. **Real-time Data Integration**
+   - Connect to real-time weather APIs for live forecasts
+   - Implement IoT sensor integration for live farm monitoring
+   - Add satellite imagery analysis for crop health monitoring
+
+5. **Climate Change Adaptation Strategies**
+   - Develop long-term climate projections for farming regions
+   - Create adaptive farming strategy recommendations
+   - Build resilience scoring for different crop combinations
+
+**Deliverable:** Comprehensive agricultural intelligence platform addressing environmental, economic, and social aspects of sustainable farming
+
 ## Contingency Features
 If you find yourself ahead of schedule, consider adding these features in order of priority:
 
@@ -119,3 +208,7 @@ If you find yourself ahead of schedule, consider adding these features in order 
 4. Historical recommendation tracking
 
 This phased approach ensures you'll have something functional to present even if you run into unexpected challenges along the way. Each phase builds upon the previous one while delivering a working system.
+
+
+##update setuptools
+#> python -m pip install --upgrade setuptools

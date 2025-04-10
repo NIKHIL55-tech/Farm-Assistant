@@ -1,0 +1,235 @@
+/* Farm Assistant Custom CSS */
+
+:root {
+    --primary-color: #3a7e4f;
+    --secondary-color: #c8e6c9;
+    --light-color: #f1f8e9;
+    --dark-color: #2e7d32;
+    --danger-color: #ff6d6d;
+    --text-color: #333;
+    --card-bg: #fff;
+    --footer-text: #fff;
+    --chart-bg: #fff;
+}
+
+/* Dark Theme */
+.dark-theme {
+    --primary-color: #2e7d32;
+    --secondary-color: #1b5e20;
+    --light-color: #1f1f1f;
+    --dark-color: #388e3c;
+    --text-color: #eee;
+    --card-bg: #333;
+    --footer-text: #eee;
+    --chart-bg: #333;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar {
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: white !important;
+}
+
+.nav-link {
+    color: white !important;
+    margin: 0 10px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--secondary-color) !important;
+}
+
+.container {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border: none;
+    background-color: var(--card-bg);
+    transition: background-color 0.3s ease;
+}
+
+.card-header {
+    background-color: var(--secondary-color);
+    border-bottom: none;
+    font-weight: bold;
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-color);
+    border-color: var(--dark-color);
+}
+
+.footer {
+    background-color: var(--primary-color);
+    color: var(--footer-text);
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 15px;
+}
+
+.stat-card i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: #666;
+}
+
+/* Dashboard specific styling */
+.dashboard-header {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.dashboard-title {
+    color: var(--primary-color);
+    margin-bottom: 0;
+}
+
+/* Form styling */
+.form-label {
+    font-weight: 500;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(58, 126, 79, 0.25);
+}
+
+/* Result cards */
+.result-card {
+    border-left: 5px solid var(--primary-color);
+}
+
+/* Recommendation styling */
+.recommendation-score {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.score-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.score-high {
+    background-color: #4caf50;
+}
+
+.score-medium {
+    background-color: #ff9800;
+}
+
+.score-low {
+    background-color: #f44336;
+}
+
+/* Dark theme chart adjustments */
+.dark-theme .js-plotly-plot {
+    --plot-bg: var(--chart-bg);
+    --grid-color: rgba(255, 255, 255, 0.1);
+    --font-color: var(--text-color);
+}
+
+/* Animation for charts */
+.chart-container {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.chart-container.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Table styling for dark mode */
+.dark-theme .table {
+    color: var(--text-color);
+}
+
+.dark-theme .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Form control dark theme */
+.dark-theme .form-control,
+.dark-theme .form-select {
+    background-color: #444;
+    border-color: #555;
+    color: var(--text-color);
+}
+
+/* Theme toggle button styling */
+.nav-item .btn-link.nav-link {
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+}
+
+/* Weather section */
+.weather-tile {
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    background-color: var(--card-bg);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.weather-tile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading spinner */
+.spinner-border {
+    margin: 20px auto;
+    display: block;
+} 

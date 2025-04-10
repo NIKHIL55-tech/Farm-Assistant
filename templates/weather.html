@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+
+{% block title %}Farm Assistant - Weather Analysis{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h1 class="dashboard-title"><i class="fas fa-cloud-sun me-2"></i>Weather Analysis</h1>
+            <p class="mb-0">Historical data and forecasts for {{ location }}</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+            <a href="/" class="btn btn-outline-primary">
+                <i class="fas fa-home me-1"></i>Back to Dashboard
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-map-marker-alt me-2"></i>Select Location
+            </div>
+            <div class="card-body">
+                <form id="location-form" class="row g-3">
+                    <div class="col-md-8">
+                        <select class="form-select" id="location-select" name="location">
+                            {% for loc in locations %}
+                            <option value="{{ loc }}" {% if loc == location %}selected{% endif %}>{{ loc }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-search me-1"></i>View Weather
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-temperature-high me-2"></i>Temperature Trends
+            </div>
+            <div class="card-body">
+                <div id="temperature-chart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-cloud-rain me-2"></i>Rainfall Patterns
+            </div>
+            <div class="card-body">
+                <div id="rainfall-chart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-table me-2"></i>Forecast Details
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Temperature (°C)</th>
+                                <th>Rainfall (mm)</th>
+                                <th>Humidity (%)</th>
+                                <th>Confidence</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for forecast in forecast_data %}
+                            <tr>
+                                <td>{{ forecast.date.strftime('%B %Y') }}</td>
+                                <td>
+                                    {{ forecast.temperature_C }}°C
+                                    <small class="text-muted">
+                                        ({{ "Warm" if forecast.temperature_C > 28 else "Mild" if forecast.temperature_C > 20 else "Cool" }})
+                                    </small>
+                                </td>
+                                <td>
+                                    {{ forecast.rainfall_mm }}mm
+                                    <small class="text-muted">
+                                        ({{ "Heavy" if forecast.rainfall_mm > 150 else "Moderate" if forecast.rainfall_mm > 50 else "Light" }})
+                                    </small>
+                                </td>
+                                <td>{{ forecast.humidity_pct }}%</td>
+                                <td>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar {% if forecast.confidence > 70 %}bg-success{% elif forecast.confidence > 40 %}bg-warning{% else %}bg-danger{% endif %}" 
+                                             role="progressbar" 
+                                             style="width: {{ forecast.confidence }}%"
+                                             aria-valuenow="{{ forecast.confidence }}" 
+                                             aria-valuemin="0" 
+                                             aria-valuemax="100">
+                                            {{ forecast.confidence }}%
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-info-circle me-2"></i>Growing Season Analysis
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <strong>Kharif Season</strong>
+                                <div class="small text-muted">June to October</div>
+                            </div>
+                            <span class="badge bg-primary">Primary Growing Season</span>
+                        </div>
+                        <p class="mt-2 small">
+                            Expected conditions: Warm temperatures with moderate to heavy rainfall.
+                            Suitable for Rice, Cotton, Maize, and other monsoon crops.
+                        </p>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <strong>Rabi Season</strong>
+                                <div class="small text-muted">November to March</div>
+                            </div>
+                            <span class="badge bg-info">Secondary Growing Season</span>
+                        </div>
+                        <p class="mt-2 small">
+                            Expected conditions: Cooler temperatures with light rainfall.
+                            Suitable for Wheat, Barley, Chickpea, and other winter crops.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-tint me-2"></i>Water Management Suggestions
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <h5><i class="fas fa-info-circle me-2"></i>Water Conservation</h5>
+                    <p>Based on the rainfall forecast for {{ location }}, consider these water management practices:</p>
+                    <ul>
+                        <li>Rainwater harvesting during peak monsoon months</li>
+                        <li>Drip irrigation systems to minimize water wastage</li>
+                        <li>Mulching to reduce evaporation and preserve soil moisture</li>
+                        <li>Water-efficient crop selection in drier periods</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Location form
+        document.getElementById('location-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const location = document.getElementById('location-select').value;
+            window.location.href = `/weather?location=${location}`;
+        });
+        
+        // Temperature chart
+        const tempChart = {{ temp_chart | safe }};
+        Plotly.newPlot('temperature-chart', tempChart.data, tempChart.layout);
+        
+        // Rainfall chart
+        const rainChart = {{ rain_chart | safe }};
+        Plotly.newPlot('rainfall-chart', rainChart.data, rainChart.layout);
+    });
+</script>
+{% endblock %} 
