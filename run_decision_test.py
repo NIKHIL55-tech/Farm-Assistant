@@ -1,29 +1,47 @@
-# run_decision_test.py
-
 import pandas as pd
 from agents.farmer_advisor import FarmerAdvisor
+from agents.market_researcher import MarketResearcher
+from core.decision_engine import DecisionEngine
 
-# Load dataset
+# Load the dataset
 df = pd.read_csv("data/farmer_advisor_dataset.csv")
-print("Available Farm_IDs:", df["Farm_ID"].unique())
 
-# Choose a valid Farm_ID to test
-farm_id = df["Farm_ID"].iloc[0]  # or manually set, e.g., farm_id = "F001"
+# Show available Farm_IDs
+farm_ids = df["Farm_ID"].unique()
+print(f"Available Farm_IDs: {farm_ids}\n")
 
-# Create a message dictionary including farm_id
-message = {
-    "query": f"Recommend crops for Farm_ID {farm_id}",
-    "farm_id": farm_id
+# Ask user to input Farm_ID
+selected_id = int(input("Enter a valid Farm_ID from the list above: "))
+
+# Check if ID exists
+if selected_id not in farm_ids:
+    print("Invalid Farm_ID.")
+    exit()
+
+# Extract row for selected Farm_ID
+farm_data = df[df["Farm_ID"] == selected_id].iloc[0]
+
+# Get soil parameters
+soil_ph = farm_data["Soil_pH"]
+soil_moisture = farm_data["Soil_Moisture"]
+temperature = farm_data["Temperature_C"]
+rainfall = farm_data["Rainfall_mm"]
+
+# Formulate query for decision engine
+query = {
+    "query": f"Recommend crops for pH {soil_ph}, moisture {soil_moisture}, temperature {temperature}, rainfall {rainfall}"
 }
 
-# Run FarmerAdvisor agent
-advisor = FarmerAdvisor("FarmerAdvisor")
-response = advisor.run(message)
+# Initialize agents and decision engine
+agents = [FarmerAdvisor(name="FarmerAdvisor"), MarketResearcher(name="MarketResearcher")]
+engine = DecisionEngine(agents)
 
-# Output the result
-print("\n=== Farmer Advisor Recommendation ===")
-print(response["response"])
-print("Top Crops:", response["recommended_crops"])
-if "detailed" in response:
-    for crop in response["detailed"]:
-        print(f"- {crop['Crop_Type']} (Avg Yield: {crop['Avg_Yield']:.2f} tons, Samples: {crop['Sample_Count']})")
+# Get the result
+result = engine.run(query)
+
+# Display result
+if "recommendation" in result:
+    print("\n=== Final Recommendation ===")
+    print(result["recommendation"])
+else:
+    print("No valid response.")

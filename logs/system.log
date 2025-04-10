@@ -261,3 +261,25 @@ INFO:root:FarmerAdvisor processing message: Recommend crops for Farm_ID 1
 INFO:root:Initializing FarmerAdvisor agent
 INFO:root:Loaded 10000 farm records
 INFO:root:FarmerAdvisor processing message: Recommend crops for Farm_ID 1
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:FarmerAdvisor processing message: Recommend crops for Farm_ID 1
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:FarmerAdvisor processing message: Recommend crops for Farm_ID 1
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
+INFO:root:Initializing FarmerAdvisor agent
+INFO:root:Loaded 10000 farm records
+INFO:root:Initializing MarketResearcher agent
+INFO:root:Loaded 10000 market records
